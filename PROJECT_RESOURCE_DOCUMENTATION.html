@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project Resource Document - THE MIGHTY THINK TANK</title>
+  <style>
+    :root {
+      --primary: #4f46e5;
+      --primary-dark: #3730a3;
+      --secondary: #0ea5e9;
+      --accent: #f59e0b;
+      --text-main: #1f2937;
+      --text-muted: #4b5563;
+      --bg-light: #f9fafb;
+      --border: #e5e7eb;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
+      color: var(--text-main);
+      background-color: #ffffff;
+      line-height: 1.6;
+      padding: 40px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    /* Print Styles */
+    @media print {
+      body {
+        padding: 0;
+        margin: 1.5cm;
+        background: #ffffff;
+        color: #000000;
+      }
+      .page-break {
+        page-break-before: always;
+      }
+      .no-print {
+        display: none;
+      }
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+      .card, .code-block {
+        break-inside: avoid;
+      }
+    }
+
+    /* Cover Header */
+    .header {
+      border-bottom: 3px solid var(--primary);
+      padding-bottom: 24px;
+      margin-bottom: 32px;
+    }
+
+    .doc-badge {
+      display: inline-block;
+      background: #e0e7ff;
+      color: var(--primary-dark);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      font-size: 32px;
+      font-weight: 800;
+      color: #111827;
+      letter-spacing: -0.5px;
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      font-size: 18px;
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      background: var(--bg-light);
+      border: 1px solid var(--border);
+      padding: 16px;
+      border-radius: 8px;
+      margin-top: 20px;
+      font-size: 14px;
+    }
+
+    .meta-item strong {
+      display: block;
+      color: #6b7280;
+      font-size: 12px;
+      text-transform: uppercase;
+    }
+
+    /* Section Headings */
+    h2 {
+      font-size: 22px;
+      font-weight: 700;
+      color: #111827;
+      margin-top: 36px;
+      margin-bottom: 16px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    h3 {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--primary-dark);
+      margin-top: 20px;
+      margin-bottom: 8px;
+    }
+
+    p {
+      margin-bottom: 14px;
+      font-size: 15px;
+      color: #374151;
+    }
+
+    ul, ol {
+      margin-bottom: 16px;
+      padding-left: 24px;
+    }
+
+    li {
+      margin-bottom: 6px;
+      font-size: 15px;
+    }
+
+    /* Code & Pre */
+    code {
+      font-family: 'Consolas', 'Courier New', monospace;
+      background: #f3f4f6;
+      color: #b91c1c;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 13.5px;
+    }
+
+    .code-block {
+      background: #1e293b;
+      color: #f8fafc;
+      padding: 16px;
+      border-radius: 8px;
+      font-family: 'Consolas', 'Courier New', monospace;
+      font-size: 13px;
+      line-height: 1.5;
+      overflow-x: auto;
+      margin: 16px 0;
+      border-left: 4px solid var(--secondary);
+    }
+
+    .code-block .comment {
+      color: #94a3b8;
+      font-style: italic;
+    }
+
+    .code-block .keyword {
+      color: #38bdf8;
+      font-weight: bold;
+    }
+
+    .code-block .string {
+      color: #fde047;
+    }
+
+    /* Cards & Callouts */
+    .card {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 18px;
+      margin-bottom: 16px;
+      background: #ffffff;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+
+    .card-title {
+      font-weight: 700;
+      font-size: 16px;
+      color: #111827;
+      margin-bottom: 6px;
+    }
+
+    .alert {
+      background: #eff6ff;
+      border-left: 4px solid var(--secondary);
+      padding: 14px;
+      border-radius: 4px;
+      margin: 16px 0;
+      font-size: 14.5px;
+    }
+
+    .alert-success {
+      background: #ecfdf5;
+      border-left-color: #10b981;
+    }
+
+    .alert-warning {
+      background: #fffbeb;
+      border-left-color: var(--accent);
+    }
+
+    /* Tables */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      font-size: 14px;
+    }
+
+    th, td {
+      border: 1px solid var(--border);
+      padding: 10px 14px;
+      text-align: left;
+    }
+
+    th {
+      background: var(--bg-light);
+      font-weight: 700;
+      color: #374151;
+    }
+
+    /* Print Button Bar */
+    .print-bar {
+      position: sticky;
+      top: 10px;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(8px);
+      padding: 12px 20px;
+      border: 1px solid var(--border);
+      border-radius: 30px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+      z-index: 100;
+    }
+
+    .btn {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 8px 18px;
+      font-size: 14px;
+      font-weight: 600;
+      border-radius: 20px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.2s;
+    }
+
+    .btn:hover {
+      background: var(--primary-dark);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Floating Print Banner -->
+  <div class="print-bar no-print">
+    <span style="font-size: 14px; font-weight: 600; color: #374151;">📄 Official Project Resource Documentation</span>
+    <button class="btn" onclick="window.print()">
+      🖨️ Print / Save as PDF
+    </button>
+  </div>
+
+  <!-- Header / Cover -->
+  <div class="header">
+    <span class="doc-badge">Project Resource & Architecture Document</span>
+    <h1>THE MIGHTY THINK TANK</h1>
+    <div class="subtitle">AI-Powered Personalized Learning Management System & Exam Preparation Engine</div>
+
+    <div class="meta-grid">
+      <div class="meta-item">
+        <strong>Project Name</strong>
+        THE MIGHTY THINK TANK
+      </div>
+      <div class="meta-item">
+        <strong>Architecture</strong>
+        Decoupled Full-Stack (Express + React + Vite)
+      </div>
+      <div class="meta-item">
+        <strong>AI Integration</strong>
+        Google Gemini 3.6 Flash SDK
+      </div>
+      <div class="meta-item">
+        <strong>Status</strong>
+        Fully Configured & Verified
+      </div>
+    </div>
+  </div>
+
+  <!-- 1. Executive Summary -->
+  <h2>1. Executive Summary</h2>
+  <p>
+    <strong>Vibrant Study Planner & Prep Studio</strong> is a web application engineered to transform unstructured study materials into customized, actionable, and interactive learning trajectories. Powered by Google's <code>Gemini 3.6 Flash</code> model, the application generates day-by-day study schedules, structured Markdown notes, active recall flashcards, multiple-choice quizzes, and interactive AI tutoring.
+  </p>
+  <p>
+    This document outlines the complete architectural framework, full-stack directory organization, component inventory, step-by-step installation and execution procedures, API specifications, and the full development/troubleshooting log encountered during setup.
+  </p>
+
+  <!-- 2. System Architecture -->
+  <h2>2. System Architecture & Tech Stack</h2>
+  <p>
+    The system utilizes a decoupled full-stack architecture separated into distinct client and server modules:
+  </p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Layer</th>
+        <th>Technologies Used</th>
+        <th>Key Responsibilities</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Frontend</strong></td>
+        <td>React 18, TypeScript, Vite, Tailwind CSS, Lucide React, Motion</td>
+        <td>Renders interactive views (Schedule, Flashcard Trainer, Quiz Engine, Notes, AI Chat), manages user input, handles local client state.</td>
+      </tr>
+      <tr>
+        <td><strong>Backend</strong></td>
+        <td>Node.js, Express.js, TypeScript (<code>tsx</code>), <code>@google/genai</code>, Dotenv</td>
+        <td>Exposes secure RESTful API endpoints, constructs AI prompts, handles JSON schema enforcement, manages environment variables.</td>
+      </tr>
+      <tr>
+        <td><strong>AI Engine</strong></td>
+        <td>Google Gemini 3.6 Flash API</td>
+        <td>Generates structured study plans, generates flashcards/quizzes, streams interactive AI tutor responses.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- 3. Directory Layout & Separation -->
+  <h2>3. Directory Structure & File Organization</h2>
+  <p>
+    The codebase is organized cleanly into separate <code>frontend/</code> and <code>backend/</code> directories to isolate concerns and allow independent execution.
+  </p>
+
+  <div class="code-block">
+vibrant-study-planner/
+├── <span class="keyword">backend/</span>                  <span class="comment"># Express API Server & AI Services</span>
+│   ├── server.ts             <span class="comment"># Main Express server entry point & Gemini API routes</span>
+│   ├── package.json          <span class="comment"># Backend dependencies (express, @google/genai, tsx, dotenv)</span>
+│   ├── .env                  <span class="comment"># Environment variables (GEMINI_API_KEY, PORT=3000)</span>
+│   ├── tsconfig.json         <span class="comment"># TypeScript configuration for Node.js</span>
+│   └── data/                 <span class="comment"># Saved study plans & persistent storage</span>
+│
+├── <span class="keyword">frontend/</span>                 <span class="comment"># React Client & Vite UI Application</span>
+│   ├── src/                  <span class="comment"># React components, styles, types, and utilities</span>
+│   │   ├── components/       <span class="comment"># UI components (QuizEngine, FocusTimer, FlashcardTrainer, etc.)</span>
+│   │   ├── App.tsx           <span class="comment"># Main dashboard and view routing</span>
+│   │   ├── main.tsx          <span class="comment"># DOM mounting entry point</span>
+│   │   ├── index.css         <span class="comment"># Global styles and Tailwind CSS imports</span>
+│   │   └── types.ts          <span class="comment"># Global TypeScript interfaces</span>
+│   ├── index.html            <span class="comment"># Single-Page Application HTML entry point</span>
+│   ├── vite.config.ts        <span class="comment"># Vite bundler config with backend API proxy setup</span>
+│   ├── package.json          <span class="comment"># Frontend dependencies (react, vite, tailwindcss, lucide-react)</span>
+│   └── tsconfig.json         <span class="comment"># TypeScript configuration for Vite/React</span>
+│
+└── <span class="keyword">README.md</span>                 <span class="comment"># Root documentation</span>
+  </div>
+
+  <!-- 4. Step-by-Step Setup -->
+  <div class="page-break"></div>
+  <h2>4. Step-by-Step Instructions to Run the App</h2>
+
+  <h3>Step 1: Backend Setup & Execution</h3>
+  <ol>
+    <li>Navigate to the backend directory:
+      <div class="code-block">cd backend</div>
+    </li>
+    <li>Ensure the <code>.env</code> file is present with your Gemini API key:
+      <div class="code-block">GEMINI_API_KEY=your_gemini_api_key_here
+PORT=3000</div>
+    </li>
+    <li>Install backend dependencies:
+      <div class="code-block">npm install</div>
+    </li>
+    <li>Start the backend server in development mode:
+      <div class="code-block">npm run dev</div>
+      <p style="margin-top:6px; font-size:13px; color:#4b5563;">You will see the output: <code>Server running at http://localhost:3000 (or http://127.0.0.1:3000)</code></p>
+    </li>
+  </ol>
+
+  <h3>Step 2: Frontend Setup & Execution</h3>
+  <ol>
+    <li>Open a <strong>second terminal window</strong> and navigate to the frontend directory:
+      <div class="code-block">cd frontend</div>
+    </li>
+    <li>Verify the frontend <code>package.json</code> contains the correct dev script:
+      <div class="code-block">{
+  <span class="string">"scripts"</span>: {
+    <span class="string">"dev"</span>: <span class="string">"vite"</span>,
+    <span class="string">"build"</span>: <span class="string">"vite build"</span>,
+    <span class="string">"preview"</span>: <span class="string">"vite preview"</span>
+  }
+}</div>
+    </li>
+    <li>Install frontend dependencies:
+      <div class="code-block">npm install</div>
+    </li>
+    <li>Start the frontend development server:
+      <div class="code-block">npm run dev</div>
+      <p style="margin-top:6px; font-size:13px; color:#4b5563;">Open your web browser and visit: <code>http://localhost:5173</code></p>
+    </li>
+  </ol>
+
+  <!-- 5. Key Features Catalog -->
+  <h2>5. Core Feature Specifications</h2>
+
+  <div class="card">
+    <div class="card-title">✨ AI Study Plan Generator</div>
+    <p>Uses Gemini 3.6 Flash with JSON Schema enforcement to create custom multi-day schedules based on target deadlines, study budgets (hours/day), and intensity preference.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🎴 Active Recall Flashcard Trainer</div>
+    <p>Provides flip animations, difficulty tracking (Easy/Medium/Hard), progress meters, and category filtering for high-retention review.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🧠 Interactive Quiz Engine</div>
+    <p>Generates multiple-choice practice quizzes complete with immediate feedback, detailed explanation breakdowns for correct answers, and final score summaries.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🤖 Real-time AI Tutor Chat</div>
+    <p>Embedded AI assistant allowing students to ask clarifying questions about specific study plan topics in real-time.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title">⏱️ Pomodoro Focus Timer</div>
+    <p>Built-in study timer supporting customizable focus cycles, short breaks, and long breaks with session count tracking.</p>
+  </div>
+
+  <!-- 6. Troubleshooting and Fix History -->
+  <h2>6. Development & Troubleshooting Log</h2>
+  <p>
+    During the restructuring and execution process, the following key issues were identified and resolved:
+  </p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Issue Description</th>
+        <th>Root Cause</th>
+        <th>Applied Resolution</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>'node_modules\.bin' is not recognized / TSX Missing</strong></td>
+        <td>Running <code>npm run dev</code> before running <code>npm install</code> in the backend directory on Windows.</td>
+        <td>Ran <code>npm install</code> inside <code>backend/</code> to link <code>tsx</code> CLI binaries properly.</td>
+      </tr>
+      <tr>
+        <td><strong>Missing localhost server address output</strong></td>
+        <td>Console output logged raw binding address <code>0.0.0.0:3000</code>.</td>
+        <td>Updated <code>server.ts</code> log message to explicitly show <code>http://localhost:3000</code>.</td>
+      </tr>
+      <tr>
+        <td><strong>Frontend failing with <code>ERR_MODULE_NOT_FOUND</code> (server.ts)</strong></td>
+        <td>Frontend <code>package.json</code> was copied directly from backend, so frontend <code>npm run dev</code> executed <code>tsx server.ts</code>.</td>
+        <td>Updated frontend <code>package.json</code> script target to <code>"dev": "vite"</code>.</td>
+      </tr>
+      <tr>
+        <td><strong>Port Collision (EADDRINUSE: 0.0.0.0:3000)</strong></td>
+        <td>Attempting to launch backend when another Node.js process was already listening on port 3000.</td>
+        <td>Terminated orphan Node processes (<code>taskkill /F /IM node.exe</code>) and configured Vite proxy on port 5173.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- 7. Conclusion -->
+  <h2>7. Conclusion & Submission Sign-off</h2>
+  <p>
+    The <strong>Vibrant Study Planner & Prep Studio</strong> is fully operational, structured according to modern full-stack engineering standards, and ready for deployment or academic submission.
+  </p>
+  <div class="alert alert-success">
+    <strong>Project Status:</strong> Verified & Complete. All API endpoints, AI models, and frontend components run seamlessly.
+  </div>
+
+</body>
+</html>

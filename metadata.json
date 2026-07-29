@@ -1,0 +1,6 @@
+{
+  "name": "THE MIGHTY THINK TANK",
+  "description": "Interactive AI-powered study planner that generates tailored study schedules, comprehensive notes, flashcards, and interactive quizzes based on your target deadlines.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
